@@ -3,12 +3,15 @@ import csv
 import time
 import sys
 import select
+import os
 from datetime import datetime
 
 port = '/dev/ttyUSB0'
 baud_rate = 115200
+output_dir = 'output'
+os.makedirs(output_dir, exist_ok=True)
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-output_file = f"servo_data_{timestamp}.csv"
+output_file = os.path.join(output_dir, f"servo_data_{timestamp}.csv")
 
 ser = serial.Serial(port, baud_rate, timeout=0.1)
 
